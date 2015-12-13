@@ -55,18 +55,11 @@ function powMatrix(a, n) {
 }
 
 function createStochasticRow(row) {
-  var links = 0;
-  for (var i = 0; i < row.length; i++) {
-    links += row[i];
-  }
+  var links = row.reduce(function(a,b) {return a+b;}, 0);
   if (links > 0) {
-    for (i = 0; i < row.length; i++) {
-      if (row[i] !== 0) row[i] /= links;
-    }
+    row = row.map(function(a) {return a/links;});
   } else {
-    for (i = 0; i < row.length; i++) {
-      row[i] = 1 / row.length;
-    }
+    row = new Array(row.length).join(1/row.length);
   }
   return row;
 }
