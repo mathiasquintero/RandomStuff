@@ -1,11 +1,11 @@
-package pfz;
+//package pfz;
 
 public class Calc {
-    
+
     public final int meaningOfLifeTheUniverseAndEverything = 42; //Just in case you're asking...
-    
+
     //Is i a prime number
-    
+
     public static boolean isPrime(long i){
         for(long a=2;a<Math.sqrt(i)+1;a++){
             if(i%a==0){
@@ -14,37 +14,34 @@ public class Calc {
         }
         return true;
     }
-    
+
     //Finds first prime i can be divided by
-    
-    public static long findFirstPrimeDivider(long i){
-        for (long a=2;a<=Math.sqrt(i) + 1;a++) {
-            if (i%a == 0) {
-                return a;
-            }
-        }
-        return i;
+
+  public static int findPrimeDivider(int i) {
+    for (int a=2;a<=Math.sqrt(i);a++) {
+      if (i%a == 0) {
+        return a;
+      }
     }
-    
+    return i;
+  }
+
     //Prim Faktor Zerlegung
-    
-    public static String PFZ(long i){
-        long faktor = i;
-        String returnString = "";
-        while (true) {
-            long a = findFirstPrimeDivider(faktor);
-            returnString += a;
-            if (a == faktor) {
-                break;
-            }
-            returnString += " * ";
-            faktor = faktor/a;
-        }
-        return returnString;
+
+  public static String pfz(int n) {
+    String returnString = "";
+    while (n != 1) {
+      int i = findPrimeDivider(n);
+      returnString += i;
+      n /= i;
+      if (n != 1)
+        returnString += " * ";
     }
-    
+    return returnString;
+  }
+
     //
-    
+
     public static long stirlingZahl(int i,int j){
         if(i==j){
             return 1;
@@ -74,7 +71,7 @@ public class Calc {
             return stirlingZahlZwei(i-1,j-1)+j*stirlingZahlZwei(i-1,j);
         }
     }
-    
+
     public static int zahlPartition(int n, int k){
         if(k==0 && n==0){
             return 1;
@@ -88,22 +85,22 @@ public class Calc {
         }
         return result;
     }
-    
+
     public static int bin(int a, int b){
         return fak(a)/(fak(a-b)*fak(b));
     }
-    
+
     public static int fak(int x){
         if (x < 0) throw new IllegalArgumentException();
         return x > 1 ? x*fak(x-1) : 1;
     }
-    
+
     public static int ggT(int x, int y){
         int a = Math.min(Math.abs(x), Math.abs(y));
         int b = Math.max(Math.abs(x), Math.abs(y));
         return a == 0 ? b : ggT(b - a, a);
     }
-    
+
     public static String translateToBase(long value, int base) {
         if(value < 0) return "-" + translateToBase(-value, base);
         String result = "";
@@ -120,7 +117,7 @@ public class Calc {
         }
         return result;
     }
-    
+
     public static long fromBaseToDecimal(String value, int base) {
         if (base == 10) return Integer.parseInt(value);
         if (value.charAt(0) == '-') return - fromBaseToDecimal(value.substring(1), base);
@@ -134,9 +131,8 @@ public class Calc {
         }
         return result;
     }
-    
+
     public static void main(String[] args) {
-        translateToBase(20,16);
+        System.out.println(pfz(-42));
     }
 }
- 
