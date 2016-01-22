@@ -23,6 +23,10 @@ sizeForDiff = 1e-10
 
 sizeForInt = 1e-5
 
+sum = (a,b,f) -> [a..b].map((x) -> f x).reduce((y,z) -> y + z)
+
+c = (x) -> if x == 0 then 1 else sum(0,x-1,(a) -> c a * c (x-1-a))
+
 sum = (arr) -> arr.reduce( (r,i) -> r + i)
 
 evaluate = (f,x) -> f x

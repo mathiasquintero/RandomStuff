@@ -29,7 +29,7 @@ class Variable extends Item
   differential: (d) -> if d == @name then new Num(1) else new Num(0)
   integral: (d) ->
     if d == @name
-      new PolynomialOp(this, 2)
+      new Multiplication(new Num(0.5), new PolynomialOp(this, 2))
     else
       new Multiplication(this, new Variable(d))
   isZero: () -> false
