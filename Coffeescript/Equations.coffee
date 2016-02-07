@@ -197,17 +197,11 @@ class Graph
   dimensions: () -> @f.vars.length + 1
   axis: (i) -> if i == 0 then @f.name else @f.vars[i-1]
 
-
 x = new Variable("x")
 
-g = new Function("f", ["x"], new PolynomialOp(x,2))
+y = new Variable("y")
 
-f = new Function("f", ["x"], new Multiplication(new ExponentialOp(x,new Num(Math.E)), x))
+z = new Variable("z")
 
-y = new Multiplication(x,new Log(x))
 
-h = y.differential("x")
-
-fd = f.differential("x")
-
-iOfG = g.integral("x")
+f = new Sum([new PolynomialOp(x,3),new Multiplication(x,new PolynomialOp(z,2)),new Multiplication(new Num(-3),new PolynomialOp(x,2)),new PolynomialOp(y,2),new Multiplication(2,new PolynomialOp(z,2))])
