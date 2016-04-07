@@ -1,8 +1,6 @@
-import java.util.Random;
-import java.util.Arrays;
-public class MergeSort {
+public class MergeSort extends SortingAlgorithm {
 
-  public static int[] merge(int[] a, int[] b){
+  private static int[] merge(int[] a, int[] b){
     int[] merged = new int[a.length + b.length];
     int aIndex = 0, bIndex = 0;
     for(int i=0;i<merged.length;i++){
@@ -17,28 +15,17 @@ public class MergeSort {
     return merged;
   }
 
-  public static int[] sort(int[] a){
-    if(a.length == 1) return a;
+  public void sort(int[] a){
+    if(a.length == 1) return;
     int[] left = new int[a.length/2], right = new int[a.length - left.length];
-    for (int i = 0;i<left.length;i++) left[i] = a[i];
-    for(int i=0;i<right.length;i++) right[i] = a[left.length + i];
-    return merge(sort(left),sort(right));
-  }
-
-
-  public static int[] createRandomArray(int length,int maxNumber){
-    int[] random = new int[length];
-    for(int i=0;i<length;i++){
-      random[i] = new Random().nextInt(maxNumber+1);
+    for (int i=0;i<left.length;i++) left[i] = a[i];
+    for (int i=0;i<right.length;i++) right[i] = a[left.length + i];
+    sort(left);
+    sort(right);
+    int[] res = merge(left, right);
+    for (int i = 0;i<a.length;i++) {
+      a[i] = res[i];
     }
-    return random;
-  }
-
-  public static void main(String[] args){
-    int[] unsorted = createRandomArray(100,100);
-    System.out.println(Arrays.toString(unsorted));
-    int[] sorted = sort(unsorted);
-    System.out.println(Arrays.toString(sorted));
   }
 
 }

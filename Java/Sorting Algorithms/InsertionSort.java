@@ -1,37 +1,19 @@
-package uebung05;
+public class InsertionSort extends SortingAlgorithm {
 
-import java.util.LinkedList;
-
-public class InsertionSort {
-
-  public static void insert(LinkedList<Integer> list, int element) {
-    for (int i=0;i<list.size();i++) {
-      if (element < list.get(i)) {
-        list.add(i, element);
-        return;
+  private static void insert(int[] array, int element, int limit) {
+    for (int i=0;i<limit;i++) {
+      if (array[i] > element) {
+        int tmp = array[i];
+        array[i] = element;
+        element = tmp;
       }
     }
-    list.addLast(element);
   }
 
-  public static LinkedList<Integer> sort(LinkedList<Integer> unsorted) {
-    LinkedList<Integer> sorted = new LinkedList<Integer>();
-    for(int i=0;i<unsorted.size();i++) {
-        insert(sorted,unsorted.get(i));
+  public void sort(int[] array) {
+    for (int i=0;i<array.length;i++) {
+      insert(array, array[i], i);
     }
-    return sorted;
-  }
-  
-  public static void main(String[] args) {
-      
-      LinkedList<Integer> a = new LinkedList();
-      a.add(5);
-      a.add(7);
-      a.add(3);
-      a.add(1);
-      a.add(10);
-      System.out.println(sort(a));
-      
   }
 
 }
