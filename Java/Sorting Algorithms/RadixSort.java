@@ -36,22 +36,20 @@ public class RadixSort extends SortingAlgorithm {
 	}
 
 	public void sort(int[] array) {
-		int to = (int) Math.log10(Integer.MAX_VALUE), pow = 10, prev = 1;
+		int pow = 10, prev = 1;
 		Bucket[] buckets = new Bucket[10];
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++) 
 			buckets[i] = new Bucket();
-		}
-		for (int i = 0; i < to; i++) {
-			for (int j = 0; j < array.length; j++) {
-				int bucketIndex = (array[j] % pow - array[j] % prev) / prev;
-				buckets[bucketIndex].add(array[j]);
+		while (pow > 0) {
+			for (int i = 0; i < array.length; i++) {
+				int bucketIndex = (array[i] % pow - array[i] % prev) / prev;
+				buckets[bucketIndex].add(array[i]);
 			}
 			int at = 0;
 			prev = pow;
 			pow *= 10;
-			for (Bucket bucket : buckets) {
+			for (Bucket bucket : buckets) 
 				at = bucket.emptyBucket(array, at);
-			}
 		}
 	}
 
