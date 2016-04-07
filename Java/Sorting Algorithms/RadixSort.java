@@ -23,7 +23,7 @@ public class RadixSort extends SortingAlgorithm {
 				last = newLast;
 			}
 		}
-
+		
 		public int emptyBucket(int[] array, int at) {
 			while (head != null) {
 				array[at] = head.data;
