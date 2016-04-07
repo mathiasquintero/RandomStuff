@@ -41,15 +41,15 @@ public class RadixSort extends SortingAlgorithm {
 		for (int i = 0; i < 10; i++) 
 			buckets[i] = new Bucket();
 		while (pow > 0) {
+			int at = 0;
 			for (int i = 0; i < array.length; i++) {
 				int bucketIndex = (array[i] % pow - array[i] % prev) / prev;
 				buckets[bucketIndex].add(array[i]);
 			}
-			int at = 0;
-			prev = pow;
-			pow *= 10;
 			for (Bucket bucket : buckets) 
 				at = bucket.emptyBucket(array, at);
+			prev = pow;
+			pow *= 10;
 		}
 	}
 
