@@ -42,7 +42,7 @@ public class RadixSort extends SortingAlgorithm {
 		int prev = 1;
 		for (int pow = 10; pow > 0; pow *= 10) {
 			for (int i = 0; i < array.length; i++) {
-				int bucketIndex = (array[i] % pow - array[i] % prev) / prev;
+				int bucketIndex = (array[i] % pow) / prev;
 				buckets[bucketIndex].add(array[i]);
 			}
 			int at = 0;
