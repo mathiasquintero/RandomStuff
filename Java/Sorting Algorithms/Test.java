@@ -31,13 +31,23 @@ public class Test {
     try {
       n = Integer.parseInt(args[0]);
     } catch(Exception e) { }
+    System.out.println("Comparing Mergesort to RadixSort");
+    System.out.println("RadixSort");
     int[] i = createRandomArray(n);
+    long start = System.nanoTime();
     SortingAlgorithm algorithm = new RadixSort();
-    System.out.println("Unsorted: ");
-    printArray(i);
     algorithm.sort(i);
+    long stop = System.nanoTime();
     System.out.println("Sorted!");
-    printArray(i);
+    System.out.println("Time: " + (stop - start));
+    System.out.println("MergeSort");
+    i = createRandomArray(n);
+    start = System.nanoTime();
+    algorithm = new MergeSort();
+    algorithm.sort(i);
+    stop = System.nanoTime();
+    System.out.println("Sorted!");
+    System.out.println("Time: " + (stop - start));
   }
 
 }
