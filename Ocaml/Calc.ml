@@ -29,8 +29,8 @@ let rec reduce l f a = match l with
   | _ -> a
 
 let rec map l f = match l with
-| [] -> []
-| x::xs -> (f x)::(map xs f)
+  | [] -> []
+  | x::xs -> (f x)::(map xs f)
 
 let foldLeft l f = match l with
   | x::xs -> reduce xs f x
@@ -39,6 +39,8 @@ let foldLeft l f = match l with
 let rec looper f n =
   if n < 0 then
     looper f (-n)
+  else if n == 0 then
+    f ()
   else
     let res = f () in looper f (n-1)
 
