@@ -7,8 +7,14 @@
   So they should be save to use with any input
 **)
 
+type number = N of int | R of float | Inf | NaN
+
 let pow a b =
-  let rec helper a b r = if b = 0 then r else helper a (b-1) (r*a)
+  let rec helper a b r =
+    if b = 0 then
+      r
+    else
+      helper a (b-1) (r*a)
   in helper a b 1
 
 let fak n =
@@ -44,9 +50,11 @@ let rec reduce l f a = match l with
   | x::xs -> reduce xs f (f a x)
   | _ -> a
 
-let rec map l f = match l with
-  | x::xs -> (f x)::(map xs f)
-  | _ -> l
+let map l f =
+  let rec helper l a = match l with
+    | x::xs -> helper xs (f x:: a)
+    | _ -> a
+  in reverse (helper l [])
 
 let foldLeft l f = match l with
   | x::xs -> reduce xs f x
