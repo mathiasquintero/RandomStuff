@@ -18,7 +18,7 @@ for i in 1...50 {
     heap.insert(item)
 }
 
-let sorted = items.sort()
+let sorted = items.sorted()
 
 for i in sorted {
     print("Sorted: \(i)")

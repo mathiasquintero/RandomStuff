@@ -35,7 +35,7 @@ class SimpleHeap<T: Comparable> {
     
     let heap = Heap<T,T>()
     
-    func insert(value: T) {
+    func insert(_ value: T) {
         heap.insert(value, data: value)
     }
     
@@ -43,8 +43,8 @@ class SimpleHeap<T: Comparable> {
         return heap.popMin()
     }
     
-    func popRight() -> T? {
-        return heap.popRight()
+    func popMax() -> T? {
+        return heap.popMax()
     }
     
 }

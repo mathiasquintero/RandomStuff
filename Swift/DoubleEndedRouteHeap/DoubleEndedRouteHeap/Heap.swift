@@ -38,7 +38,7 @@ class Heap<T: Comparable, V> {
         }
     }
     
-    private func siftLeft(index: Int) -> Int {
+    private func siftLeft(_ index: Int) -> Int {
         if size > 1 {
             if size - index < bufferSize {
                 let invertedIndex = size - index - 1
@@ -64,7 +64,7 @@ class Heap<T: Comparable, V> {
         return index
     }
     
-    private func siftRight(index: Int) -> Int {
+    private func siftRight(_ index: Int) -> Int {
         if size > 1 {
             if index < bufferSize {
                 let left = 2 * index + 1
@@ -91,11 +91,11 @@ class Heap<T: Comparable, V> {
         return index
     }
     
-    func insert(priority: T, data: V) {
+    func insert(_ priority: T, data: V) {
         self.data.append((priority, data))
         var index = siftLeft(size - 1)
         index = siftRight(index)
-        siftLeft(index)
+        let _ = siftLeft(index)
     }
     
     func popMin() -> V? {
@@ -103,17 +103,17 @@ class Heap<T: Comparable, V> {
             swap(&data[0], &data[size - 1])
             let min = data.popLast()
             let index = siftRight(0)
-            siftLeft(index)
+            let _ = siftLeft(index)
             return min?.data
         }
         return data.popLast()?.data
     }
     
-    func popRight() -> V? {
+    func popMax() -> V? {
         if size > 0 {
             let max = data.popLast()
             let index = siftLeft(size - 1)
-            siftRight(index)
+            let _ = siftRight(index)
             return max?.data
         }
         return nil
