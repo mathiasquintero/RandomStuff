@@ -91,7 +91,7 @@ class Heap<T: Comparable, V> {
         return index
     }
     
-    func insert(_ priority: T, data: V) {
+    func insert(priority: T, data: V) {
         self.data.append((priority, data))
         var index = siftLeft(size - 1)
         index = siftRight(index)
