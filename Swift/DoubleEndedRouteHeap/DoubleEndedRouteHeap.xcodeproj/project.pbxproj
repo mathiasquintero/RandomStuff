@@ -1,0 +1,257 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E0A60571D5AB3DB00CD6506 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A60561D5AB3DB00CD6506 /* main.swift */; };
+		0E0A605E1D5AB3E500CD6506 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A605D1D5AB3E500CD6506 /* Heap.swift */; };
+		0E0A60601D5AC81200CD6506 /* SimpleHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A605F1D5AC81200CD6506 /* SimpleHeap.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0E0A60511D5AB3DB00CD6506 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0E0A60531D5AB3DB00CD6506 /* DoubleEndedRouteHeap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DoubleEndedRouteHeap; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E0A60561D5AB3DB00CD6506 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0E0A605D1D5AB3E500CD6506 /* Heap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
+		0E0A605F1D5AC81200CD6506 /* SimpleHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleHeap.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0E0A60501D5AB3DB00CD6506 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E0A604A1D5AB3DB00CD6506 = {
+			isa = PBXGroup;
+			children = (
+				0E0A60551D5AB3DB00CD6506 /* DoubleEndedRouteHeap */,
+				0E0A60541D5AB3DB00CD6506 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0E0A60541D5AB3DB00CD6506 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E0A60531D5AB3DB00CD6506 /* DoubleEndedRouteHeap */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E0A60551D5AB3DB00CD6506 /* DoubleEndedRouteHeap */ = {
+			isa = PBXGroup;
+			children = (
+				0E0A60561D5AB3DB00CD6506 /* main.swift */,
+				0E0A605D1D5AB3E500CD6506 /* Heap.swift */,
+				0E0A605F1D5AC81200CD6506 /* SimpleHeap.swift */,
+			);
+			path = DoubleEndedRouteHeap;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E0A60521D5AB3DB00CD6506 /* DoubleEndedRouteHeap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E0A605A1D5AB3DB00CD6506 /* Build configuration list for PBXNativeTarget "DoubleEndedRouteHeap" */;
+			buildPhases = (
+				0E0A604F1D5AB3DB00CD6506 /* Sources */,
+				0E0A60501D5AB3DB00CD6506 /* Frameworks */,
+				0E0A60511D5AB3DB00CD6506 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoubleEndedRouteHeap;
+			productName = DoubleEndedRouteHeap;
+			productReference = 0E0A60531D5AB3DB00CD6506 /* DoubleEndedRouteHeap */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0E0A604B1D5AB3DB00CD6506 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Mathias Quintero";
+				TargetAttributes = {
+					0E0A60521D5AB3DB00CD6506 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 0E0A604E1D5AB3DB00CD6506 /* Build configuration list for PBXProject "DoubleEndedRouteHeap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0E0A604A1D5AB3DB00CD6506;
+			productRefGroup = 0E0A60541D5AB3DB00CD6506 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E0A60521D5AB3DB00CD6506 /* DoubleEndedRouteHeap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E0A604F1D5AB3DB00CD6506 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0A60571D5AB3DB00CD6506 /* main.swift in Sources */,
+				0E0A60601D5AC81200CD6506 /* SimpleHeap.swift in Sources */,
+				0E0A605E1D5AB3E500CD6506 /* Heap.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0E0A60581D5AB3DB00CD6506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0E0A60591D5AB3DB00CD6506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0E0A605B1D5AB3DB00CD6506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0E0A605C1D5AB3DB00CD6506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E0A604E1D5AB3DB00CD6506 /* Build configuration list for PBXProject "DoubleEndedRouteHeap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E0A60581D5AB3DB00CD6506 /* Debug */,
+				0E0A60591D5AB3DB00CD6506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E0A605A1D5AB3DB00CD6506 /* Build configuration list for PBXNativeTarget "DoubleEndedRouteHeap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E0A605B1D5AB3DB00CD6506 /* Debug */,
+				0E0A605C1D5AB3DB00CD6506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0E0A604B1D5AB3DB00CD6506 /* Project object */;
+}
