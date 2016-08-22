@@ -35,8 +35,12 @@ class SimpleHeap<T: Comparable> {
     
     let heap = Heap<T,T>()
     
-    func insert(_ value: T) {
-        heap.insert(priority: value, data: value)
+    func get(handle: Int) -> T? {
+        return heap.get(handle: handle)
+    }
+    
+    func insert(_ value: T) -> Int {
+        return heap.insert(priority: value, data: value)
     }
     
     func popMin() -> T? {

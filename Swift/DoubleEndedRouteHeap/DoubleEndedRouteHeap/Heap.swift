@@ -10,7 +10,7 @@ import Foundation
 
 class Heap<T: Comparable, V> {
     
-    var data = [(prio: T, data: V)]()
+    var data = [(prio: T, data: V, handle: Int)]()
     
     var size: Int {
         get {
@@ -38,72 +38,99 @@ class Heap<T: Comparable, V> {
         }
     }
     
-    private func siftLeft(_ index: Int) -> Int {
+    private var handle = 0
+    
+    private var tracking = [Int:Int]()
+    
+    private func swapInternalData(_ a: Int, _ b: Int) {
+        swap(&data[a], &data[b])
+        tracking[data[a].handle] = a
+        tracking[data[b].handle] = b
+    }
+
+    private func siftLeft(_ index: Int) {
+        var index = index
         if size > 1 {
-            if size - index < bufferSize {
-                let invertedIndex = size - index - 1
-                let left = size - (2 * invertedIndex + 1) - 1
-                let right = size - (2 * invertedIndex + 2) - 1
+            let invertedIndex = size - index - 1
+            let left = size - (2 * invertedIndex + 1) - 1
+            let right = size - (2 * invertedIndex + 2) - 1
+            if left >= 0 {
                 let neighbourWithBiggestPriority = right < 0 ? left : (data[left].prio > data[right].prio ? left : right)
                 if data[neighbourWithBiggestPriority].prio > data[index].prio {
-                    swap(&data[neighbourWithBiggestPriority], &data[index])
-                    return siftLeft(neighbourWithBiggestPriority)
-                } else {
-                    return index
+                    let currentHandle = data[index].handle
+                    let neighbourHandle = data[neighbourWithBiggestPriority].handle
+                    swapInternalData(neighbourWithBiggestPriority, index)
+                    siftLeft(neighbourWithBiggestPriority)
+                    if let neighbourIndex = tracking[neighbourHandle] {
+                        siftLeft(neighbourIndex)
+                    }
+                    index = tracking[currentHandle] ?? index
                 }
-            } else {
+            }
+            if index > 0 {
                 let parent = (index - 1) / 2
                 if data[parent].prio > data[index].prio {
-                    swap(&data[parent], &data[index])
-                    return siftLeft(parent)
-                } else {
-                    return index
+                    swapInternalData(parent, index)
+                    siftLeft(parent)
                 }
             }
         }
-        return index
     }
     
-    private func siftRight(_ index: Int) -> Int {
+    private func siftRight(_ index: Int){
+        var index = index
         if size > 1 {
-            if index < bufferSize {
-                let left = 2 * index + 1
-                let right = 2 * index + 2
+            let left = 2 * index + 1
+            let right = 2 * index + 2
+            if left < size {
                 let neighbourWithSmallestPriority = right >= size ? left : (data[left].prio < data[right].prio ? left : right)
                 if data[neighbourWithSmallestPriority].prio < data[index].prio {
-                    swap(&data[neighbourWithSmallestPriority], &data[index])
-                    return siftRight(neighbourWithSmallestPriority)
-                } else {
-                    return index
+                    let currentHandle = data[index].handle
+                    let neighbourHandle = data[neighbourWithSmallestPriority].handle
+                    swapInternalData(neighbourWithSmallestPriority, index)
+                    siftRight(neighbourWithSmallestPriority)
+                    if let neighbourIndex = tracking[neighbourHandle] {
+                        siftLeft(neighbourIndex)
+                    }
+                    index = tracking[currentHandle] ?? index
                 }
-            } else {
+            }
+            if index < size - 1 {
                 let invertedIndex = size - index - 1
                 let invertedParent = (invertedIndex - 1) / 2
                 let parent = size - invertedParent - 1
                 if data[parent].prio < data[index].prio {
-                    swap(&data[parent], &data[index])
-                    return siftRight(parent)
-                } else {
-                    return index
+                    swapInternalData(parent, index)
+                    siftRight(parent)
                 }
             }
         }
-        return index
     }
     
-    func insert(priority: T, data: V) {
-        self.data.append((priority, data))
-        var index = siftLeft(size - 1)
-        index = siftRight(index)
-        let _ = siftLeft(index)
+    func insert(priority: T, data: V) -> Int {
+        self.data.append((priority, data, handle))
+        handle += 1
+        tracking[handle - 1] = size - 1
+        siftLeft(size - 1)
+        siftRight(tracking[handle - 1] ?? 0)
+        siftLeft(tracking[handle - 1] ?? 0)
+        return handle - 1
+    }
+    
+    func get(handle: Int) -> V? {
+        if let index = tracking[handle] {
+            return data[index].data
+        }
+        return nil
     }
     
     func popMin() -> V? {
         if size > 1 {
-            swap(&data[0], &data[size - 1])
+            swapInternalData(0, size - 1)
             let min = data.popLast()
-            let index = siftRight(0)
-            let _ = siftLeft(index)
+            let handle = data[0].handle
+            siftRight(0)
+            siftLeft(tracking[handle] ?? 0)
             return min?.data
         }
         return data.popLast()?.data
@@ -112,8 +139,6 @@ class Heap<T: Comparable, V> {
     func popMax() -> V? {
         if size > 0 {
             let max = data.popLast()
-            let index = siftLeft(size - 1)
-            let _ = siftRight(index)
             return max?.data
         }
         return nil

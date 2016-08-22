@@ -15,12 +15,17 @@ var items = [UInt32]()
 for i in 1...50 {
     let item = arc4random()
     items.append(item)
-    heap.insert(item)
+    _ = heap.insert(item)
 }
 
 let sorted = items.sorted()
 
 for i in sorted {
-    print("Sorted: \(i)")
-    print("Heap: \(heap.popMin())")
+    let data = heap.popMin()
+    if data != i {
+        print("Mismatch!!!! :")
+        print("Sorted: \(i)")
+        print("Heap: \(heap.popMin())")
+    }
+    
 }
