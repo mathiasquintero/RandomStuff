@@ -12,10 +12,11 @@ let heap = SimpleHeap<UInt32>()
 
 var items = [UInt32]()
 
-for i in 1...50 {
+for i in 1...10000 {
     let item = arc4random()
     items.append(item)
     _ = heap.insert(item)
+    assert(heap.isValid())
 }
 
 let sorted = items.sorted()
@@ -23,9 +24,9 @@ let sorted = items.sorted()
 for i in sorted {
     let data = heap.popMin()
     if data != i {
-        print("Mismatch!!!! :")
         print("Sorted: \(i)")
-        print("Heap: \(heap.popMin())")
+        print("Heap: \(data)")
+        print("Mismatch!!!! :")
     }
-    
 }
+

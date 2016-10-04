@@ -77,7 +77,7 @@ class Heap<T: Comparable, V> {
         }
     }
     
-    private func siftRight(_ index: Int){
+    private func siftRight(_ index: Int) {
         var index = index
         if size > 1 {
             let left = 2 * index + 1
@@ -144,4 +144,22 @@ class Heap<T: Comparable, V> {
         return nil
     }
     
+    func isValid() -> Bool {
+        let limit = (size - 2) / 2
+        for i in 0..<limit {
+            if data[i].prio > data[2*i+1].prio || data[i].prio > data[2*i+2].prio {
+                print("\(i) : \(data[i])")
+                print("\(2*i+1) : \(data[2*i+1])")
+                print("\(2*i+2) : \(data[2*i+2])")
+                return false
+            }
+            if data[size - i - 1].prio < data[size - 2*i - 2].prio || data[size - i - 1].prio < data[size - 2*i - 3].prio {
+                print("\(size - i - 1) : \(data[size - i - 1])")
+                print("\(size - 2*i - 2) : \(data[size - 2*i - 2])")
+                print("\(size - 2*i - 3) : \(data[size - 2*i - 3])")
+                return false
+            }
+        }
+        return true
+    }
 }

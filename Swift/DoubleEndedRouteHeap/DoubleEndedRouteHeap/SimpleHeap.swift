@@ -51,4 +51,8 @@ class SimpleHeap<T: Comparable> {
         return heap.popMax()
     }
     
+    func isValid() -> Bool {
+        return heap.isValid()
+    }
+    
 }
