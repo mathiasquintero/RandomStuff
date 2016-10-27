@@ -3,10 +3,10 @@ import Foundation
 extension String {
 
     var isPalindrome: Bool {
-        if self.characters.count < 2 {
+        if characters.count < 2 {
             return true
         }
-        if self.characters.first != self.characters.last {
+        if characters.first != characters.last {
             return false
         }
         let range = index(after: startIndex)..<index(before: endIndex)
