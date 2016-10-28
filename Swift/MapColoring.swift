@@ -15,7 +15,9 @@ class State {
     }
 
     func canPaint(_ color: Color) -> Bool {
-        return neighbours.filter({ $0.color == color }).isEmpty
+        return neighbours
+            .filter { $0.color == color }
+            .isEmpty
     }
 }
 
@@ -68,5 +70,5 @@ extension State {
 
 }
 
-let coloredMap = getColors(states: australia)?.map({ $0.descriptionWithColoring }) ?? []
+let coloredMap = getColors(states: australia)?.map { $0.descriptionWithColoring } ?? []
 print(coloredMap)

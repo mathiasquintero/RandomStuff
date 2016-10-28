@@ -38,7 +38,7 @@ struct Bijketion<T: Hashable, V: Hashable> {
         from[b] = a
         return Bijketion(to: to, from: from)
     }
-
+    
     func functionBy(mapping: Node<T>, to: Node<V>) -> Bijketion<T, V> {
         return functionBy(mapping: mapping.name, to: to.name)
     }
@@ -56,10 +56,14 @@ func equals<T: Hashable, V: Hashable>(_ a: Graph<T>, _ b: Graph<V>, f: Bijketion
         return true
     }
     let node = a.nodes[index]
-    let possibleContraNodes = b.nodes.filter({ $0.degree == node.degree && f.from[$0.name] == nil })
+    let possibleContraNodes = b.nodes.filter { $0.degree == node.degree && f.from[$0.name] == nil }
     for other in possibleContraNodes {
-        let expected = node.neighbours.map({ f.to[$0.name] }).flatMap { $0 }
-        let real = other.neighbours.map({ $0.name }).flatMap { $0 }
+        let expected = node.neighbours
+            .map { f.to[$0.name] }
+            .flatMap { $0 }
+        let real = other.neighbours
+            .map { $0.name }
+            .flatMap { $0 }
         if expected.filter({ !real.contains($0) }).isEmpty {
             let copy = f.functionBy(mapping: node, to: other)
             if equals(a, b, f: copy, index: index + 1) {
