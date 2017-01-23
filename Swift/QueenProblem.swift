@@ -29,13 +29,7 @@ struct Queen: ChessPiece {
     }
     
     func canAttack(x: Int, y: Int) -> Bool {
-        if self.x == x || self.y == y {
-            return true
-        }
-        if abs(self.x - x) == abs(self.y - y) {
-            return true
-        }
-        return false
+        return self.x == x || self.y == y || abs(self.x - x) == abs(self.y - y)
     }
 }
 
@@ -52,8 +46,8 @@ extension Collection where Iterator.Element == ChessPiece {
     func prettyPrint() {
         let string = coordinates.reduce("") { board, row in
             return board + row.reduce("") { row, item in
-                return row + "| \(self.representation(x: item.0, y: item.1)) "
-            } + "| \r\n"
+                return row + "|\(self.representation(x: item.0, y: item.1))"
+            } + "|\r\n"
         }
         print(string)
     }
@@ -69,11 +63,8 @@ func boards(basedOn current: Board = [], y: Int = 0) -> [Board] {
     return (0..<8)
             .filter { current.fits(x: $0, y: y) }
             .reduce([]) { results, x in
-                var current = current
-                current.append(Queen(x: x, y: y))
-                var results = results
-                results.append(contentsOf: boards(basedOn: current, y: y + 1))
-                return results
+                let current = current + [Queen(x: x, y: y) as ChessPiece]
+                return results + boards(basedOn: current, y: y + 1)
             }
     
 }
@@ -82,4 +73,5 @@ func boards(basedOn current: Board = [], y: Int = 0) -> [Board] {
 // where no queen can Attack another one
 
 let result = boards()
+print("Finished with \(result.count) possibilities:\n")
 result.forEach { $0.prettyPrint() }
