@@ -1,8 +1,13 @@
 import Foundation
 
+let coordinates = (0..<8).map { item in
+    (0..<8).map { (item, $0) }
+}
+
 protocol ChessPiece {
     var x: Int { get }
     var y: Int { get }
+    var representation: String { get }
     init(x: Int, y: Int)
     func canAttack(x: Int, y: Int) -> Bool
 }
@@ -19,6 +24,10 @@ struct Queen: ChessPiece {
     let x: Int
     let y: Int
     
+    var representation: String {
+        return "Q"
+    }
+    
     func canAttack(x: Int, y: Int) -> Bool {
         if self.x == x || self.y == y {
             return true
@@ -32,9 +41,21 @@ struct Queen: ChessPiece {
 
 extension Collection where Iterator.Element == ChessPiece {
     
+    func representation(x: Int, y: Int) -> String {
+        return reduce(" ") { ($1.x == x && $1.y == y) ? $1.representation : $0 }
+    }
+    
     func fits(x: Int, y: Int) -> Bool {
-        return filter { $0.canAttack(x: x, y: y) }
-                .isEmpty
+        return reduce(true) { $0 && !$1.canAttack(x: x, y: y) }
+    }
+    
+    func prettyPrint() {
+        let string = coordinates.reduce("") { board, row in
+            return board + row.reduce("") { row, item in
+                return row + "| \(self.representation(x: item.0, y: item.1)) "
+            } + "| \r\n"
+        }
+        print(string)
     }
     
 }
@@ -61,6 +82,4 @@ func boards(basedOn current: Board = [], y: Int = 0) -> [Board] {
 // where no queen can Attack another one
 
 let result = boards()
-
-print("\(result.count) possibilities:")
-print(result)
+result.forEach { $0.prettyPrint() }
