@@ -41,7 +41,7 @@ extension Collection where Iterator.Element == ChessPiece {
 
 typealias Board = [ChessPiece]
 
-func boards(_ current: Board = [], y: Int = 0) -> [Board] {
+func boards(basedOn current: Board = [], y: Int = 0) -> [Board] {
     if current.count == 8 {
         return [current]
     }
@@ -51,7 +51,7 @@ func boards(_ current: Board = [], y: Int = 0) -> [Board] {
                 var current = current
                 current.append(Queen(x: x, y: y))
                 var results = results
-                results.append(contentsOf: boards(current, y: y + 1))
+                results.append(contentsOf: boards(basedOn: current, y: y + 1))
                 return results
             }
     
