@@ -8,9 +8,11 @@ let (^?) a b = let m = (a => (fun x -> x ^ b)) in m $ b;;
 let rec (%) a b = if a < b then a else (a - b) % b;;
 
 let helper a n (f, s) = if (f n) then Some(a ^? s) else a;;
-let fizzbuzz n l = (reduce l (fun a x -> helper a n x) None) $ (string_of_int n);; 
+let output n l = (reduce l (fun a x -> helper a n x) None) $ (string_of_int n);; 
 
 let rec range a b = if a < b then a::(range (a + 1) b) else [b];;
 let rules = map [3, "Fizz"; 5, "Buzz"] (fun (a, b) -> (fun n -> n % a = 0), b);;
 
-let game = map (range 0 100) (fun x -> fizzbuzz x rules);;
+let fizzbuzz n = map (range 0 n) (fun x -> output x rules);;
+
+let game = fizzbuzz 100;;
