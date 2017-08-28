@@ -36,9 +36,20 @@ struct Contacts {
     
 }
 
-let _ = readLine()
+func readInt() -> Int? {
+    guard let line = readLine() else {
+        return nil
+    }
+    return Int(line)
+}
+
+let lines = readInt()
 var contacts = Contacts(names: [])
-while let command = Command.read() {
+lines.map({ (0..<$0) })?.forEach { _ in
+
+    guard let command = Command.read() else {
+        return
+    }
     switch command {
         case .add(let name):
             contacts = contacts.adding(name: name)
