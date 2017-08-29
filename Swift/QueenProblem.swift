@@ -62,10 +62,8 @@ func boards(basedOn current: Board = [], y: Int = 0) -> [Board] {
     }
     return (0..<8)
             .filter { current.fits(x: $0, y: y) }
-            .reduce([]) { results, x in
-                let current = current + [Queen(x: x, y: y) as ChessPiece]
-                return results + boards(basedOn: current, y: y + 1)
-            }
+            .map { current + [Queen(x: $0, y: y) as ChessPiece] }
+            .flatMap { boards(basedOn: $0, y: y + 1) }
     
 }
 
