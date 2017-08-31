@@ -57,6 +57,14 @@ let multiplyMatrices a b =
     let transposed = transposed b in
     reduce a [] (fun a b -> a @ [map transposed (fun x -> multiplyVectors x b)]);;
 
+let multiplyMatrixAndVector m v = multiplyMatrices m (transposed [v])
+
+let diagonal m =
+    let width = width m in
+    let length = length m in
+    let range = (range 1 length) in
+    map (zip range m) (fun (i, v) -> multiplyVectors (identityVector i width) v);;
+
 let rec powerMatrix m pow =
     if pow = 0 then
         identityMatrix (width m)
