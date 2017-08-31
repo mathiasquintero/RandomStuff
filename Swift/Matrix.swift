@@ -18,7 +18,7 @@ func ++(lhs: Matrix, rhs: Vector) -> Matrix {
 
 extension Array where Element == Vector {
     
-    static func of(length: Int) -> Matrix {
+    private static func of(length: Int) -> Matrix {
         return (0..<length).map { _ in [] }
     }
     
