@@ -71,6 +71,34 @@ let rec powerMatrix m pow =
     else
         multiplyMatrices m (powerMatrix m (pow - 1));;
 
+let rec goIn i af a bf b =
+    let vector = identityVector i (width a) in
+    match (a, b) with
+    | (x::xs, y::ys) ->
+        let factor = (multiplyVectors vector x) /. (multiplyVectors vector af) in
+        let newX = sumVectors x (multiplyScalarAndVector (-1.0 *. factor) af) in
+        let newY= y -. factor *. bf in
+        let (a, b) = goIn i af xs bf ys in
+        (newX::a, newY::b)
+    | _ -> ([], []);;
+
+let rec doit a b i =
+    match (a, b) with
+    | (x::xs, y::ys) ->
+        let (a, b) = goIn i x xs y ys in
+        let (a, b) = doit a b (i + 1) in
+        (x::a, y::b)
+    | _ -> (a, b);;
+
+let solve a b =
+    let (a, b) = doit a b 1 in
+    let (a, b) = doit (reversed a) (reversed b) 1 in
+    let (a, b) = (reversed a, reversed b) in
+    let zipped = zip a b in
+    let l = zip (zipped (length zipped)) in
+    map l (fun ((a, b), i) -> b /. (multiplyVectors (identityVector i (length a)) a));;
+
+
 let a = [
     [2.0; 3.0];
     [4.0; 5.0]
