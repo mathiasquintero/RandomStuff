@@ -123,7 +123,6 @@ class PartitionDistribution(object):
         return reduce(lambda a, b: a if counts[a] > counts[b] else b, counts)
 
     def adding(self, instance):
-        # TODO: Check if dicts are called by reference or value
         counts = self.counts.copy()
         if instance.label not in counts:
             counts[instance.label] = 0
