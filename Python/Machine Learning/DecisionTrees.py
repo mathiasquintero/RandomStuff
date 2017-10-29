@@ -41,12 +41,29 @@ class Tree(object):
         # And I didn't feel like dumbing this down
         # Let's just risk overfitting the training data
         if depth < 1 or self.separator is None:
-            return self
+            return Tree(self.distribution)
 
         smaller = self.smaller.capping_depth(depth - 1)
         bigger = self.bigger.capping_depth(depth - 1)
         return Tree(self.distribution, self.separator, self.value, smaller, bigger)
 
+    def dot(self):
+        graph = str(id(self))
+        if self.separator is None:
+            graph += " [label=\"" + self.distribution.most_common() + "\" xlabel=\"" + self.distribution.pretty() + "\"]"
+        else:
+            graph += " [label=\"x" + str(self.separator) + " <= " + str(self.value) + "\" xlabel=\"" + self.distribution.pretty() + "\"]\n"
+            graph += self.smaller.dot() + "\n"
+            graph += self.bigger.dot() + "\n"
+            graph += str(id(self)) + " -> " + str(id(self.smaller)) + " [label=true]\n"
+            graph += str(id(self)) + " -> " + str(id(self.bigger)) + " [label=false]"
+        return graph
+
+    def full_dot(self):
+        graph = "digraph G {\n"
+        graph += self.dot()
+        graph += "\n}"
+        return graph
 
 class Separation(object):
     separator = None
@@ -134,6 +151,10 @@ class PartitionDistribution(object):
         counts[instance.label] -= 1
         return PartitionDistribution(counts)
 
+    def pretty(self):
+        keys = filter(lambda k: self.counts[k] != 0, self.counts)
+        pretty = map(lambda k: k + ": " + str(self.counts[k]), keys)
+        return "(" + ", ".join(pretty) + ")"
 
 class TreeCreator(object):
     instances = []
@@ -210,6 +231,10 @@ def tree_at_file(filename):
         instances = map(lambda x: Instance(map(lambda y: float(y), x[:barrier]), x[barrier]), output[1:])
         return TreeCreator.from_instances(instances).build_tree(gini)
 
-tree = tree_at_file("01_homework_dataset.csv")
-print(tree)
-print(tree.classify([6.1, 0.4, 1.3]))
+tree = tree_at_file("01_homework_dataset.csv").capping_depth(2)
+
+xa = [4.1,-0.1,2.2]
+xb=[6.1,0.4,1.3]
+
+print(tree.classify(xa))
+print(tree.classify(xb))
